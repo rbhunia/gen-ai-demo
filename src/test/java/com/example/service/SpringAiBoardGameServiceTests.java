@@ -25,12 +25,12 @@ public class SpringAiBoardGameServiceTests {
     private RelevancyEvaluator relevancyEvaluator;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         this.relevancyEvaluator = new RelevancyEvaluator(chatClientBuilder);
     }
 
     @Test
-    public void evaluateRelevancy(){
+    public void evaluateRelevancy() {
         String userText = "Why the sky is blue?";
         Question question = new Question(userText);
         Answer answer = boardGameService.askQuestion(question);
@@ -41,7 +41,7 @@ public class SpringAiBoardGameServiceTests {
         assertThat(evaluationResponse.isPass())
                 .withFailMessage("""
                         ========================================
-                        The answer is "%s" is not considered relevant to the question "%s"
+                        The answer "%s" is not considered relevant to the question "%s"
                         Please check your configuration and ensure that the model is capable of understanding and responding to the question
                         Note that the evaluation is based on the model's understanding and may not always align with human judgment.
                         For more information, refer to the Spring AI documentation: https://docs.spring.io/spring-ai/docs/current/reference/html/#chat-evaluation

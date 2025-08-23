@@ -8,15 +8,14 @@ import org.springframework.web.client.RestClient;
 @SpringBootApplication
 public class GenAiDemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GenAiDemoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GenAiDemoApplication.class, args);
+    }
 
-	@Bean
-	public RestClient.Builder restClientBuilder() {
-		return RestClient.builder();
-	}
-
+    @Bean
+    public RestClient.Builder restClientBuilder() {
+        return RestClient.builder();
+    }
 }
 
 

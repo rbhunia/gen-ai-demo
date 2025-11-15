@@ -27,10 +27,18 @@ public class BankingKnowledgeServiceImpl implements BankingKnowledgeService, Com
     @Override
     public void run(String... args) {
         if (!initialized) {
-            log.info("Initializing banking knowledge base...");
-            initializeKnowledgeBase();
-            initialized = true;
-            log.info("Banking knowledge base initialized successfully!");
+            try {
+                log.info("Initializing banking knowledge base...");
+                initializeKnowledgeBase();
+                initialized = true;
+                log.info("Banking knowledge base initialized successfully!");
+            } catch (Exception e) {
+                log.error("Failed to initialize banking knowledge base. " +
+                        "This may be due to missing Ollama embedding model. " +
+                        "Please ensure 'nomic-embed-text' is available: ollama pull nomic-embed-text", e);
+                // Don't fail application startup - allow it to continue without knowledge base
+                log.warn("Application will continue without pre-loaded banking knowledge base.");
+            }
         }
     }
 
